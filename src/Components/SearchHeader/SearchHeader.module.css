@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0.5rem auto;
+  border-bottom: 0.5px solid #e6d5d5;
+}
+.logo{
+  color: #d05a5a;
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+}
