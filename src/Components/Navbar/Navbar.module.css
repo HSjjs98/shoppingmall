@@ -1,11 +1,12 @@
 .container{
   display: flex;
-  width: 22%;
   justify-content: space-around;
   margin: 1rem 0;
 }
 .container *{
+  white-space: nowrap;
   text-decoration: none;
+  margin: 0 0.5rem;
   font-weight: bold;
   color: black;
   opacity: 0.8;
@@ -13,4 +14,22 @@
 .container *:hover{
   opacity: 1;
   transform: scale(1.1);
+}
+
+.container span:hover,
+.container span img:hover{
+  opacity: 0.8;
+  transform: scale(1);
+}
+
+.user img{
+  width: 1rem;
+  border-radius: 50%;
+}
+.login{
+  border: none;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
 }
