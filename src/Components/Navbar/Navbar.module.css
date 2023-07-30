@@ -4,6 +4,8 @@
   margin: 1rem 0;
 }
 .container *{
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   text-decoration: none;
   margin: 0 0.5rem;
@@ -23,13 +25,17 @@
 }
 
 .user img{
-  width: 1rem;
+  width: 1.7rem;
   border-radius: 50%;
 }
+
 .login{
   border: none;
-  background-color: transparent;
-  font-weight: 700;
+  height: 1.5rem;
+  background-color: #d05a5a;
+  color: white;
+  font-weight: 600;
   font-size: 1.05rem;
+  border-radius: 10%;
   cursor: pointer;
 }

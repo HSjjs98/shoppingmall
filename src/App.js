@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
-import SearchHeader from './Components/SearchHeader/SearchHeader';
+import Header from './Components/Header/Header';
+import { AuthContextProvider } from './Context/AuthContext';
 
 function App() {
   return (
-    <>
-      <SearchHeader />
-      <Outlet />
-    </>
+      <AuthContextProvider>
+        <Header />
+        <Outlet />
+      </AuthContextProvider>
   );
 }
 

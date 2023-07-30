@@ -9,6 +9,7 @@ import AllProducts from "./Pages/AllProducts";
 import NewProduct from "./Pages/NewProduct";
 import ProductDetail from "./Pages/ProductDetail";
 import MyCart from "./Pages/MyCart";
+import ProtectedRoute from "./Pages/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: "products/new",
-        element: <NewProduct />,
+        element: (
+          <ProtectedRoute requireAdmin>
+            <NewProduct />,
+          </ProtectedRoute>
+        ),
       },
       {
         path: "products/:id",
@@ -34,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <MyCart />,
+        element: (
+          <ProtectedRoute>
+            <MyCart />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
@@ -43,6 +52,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} App/>
+    <RouterProvider router={router} App />
   </React.StrictMode>
 );

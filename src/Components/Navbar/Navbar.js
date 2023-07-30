@@ -1,52 +1,33 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPen } from "react-icons/fa";
 import styles from "./Navbar.module.css";
-import {
-  login as Login,
-  logout as Logout,
-  onUserStateChange,
-} from "../../API/Firebase";
+import { login as Login, logout as Logout } from "../../API/Firebase";
+import { useAuthContext } from "../../Context/AuthContext";
 
 export default function Navbar() {
-  const [user, setUser] = useState();
-  const [login, setLogin] = useState("Login");
-
-  useEffect(() => {
-    onUserStateChange((user) => {
-      setUser(user);
-    });
-  }, []);
-  
-  const handleLoginout = () => {
-    if (login === "Login") {
-      Login()
-        .then((u) => setUser(u))
-        .catch((e) => console.log(e));
-      setLogin("Logout");
-    } else {
-      Logout().then(() => setUser(null));
-      setLogin("Login");
-    }
+  const { user, loginout } = useAuthContext();
+  const handleLoginout = async () => {
+    if (loginout === "Login") await Login();
+    else await Logout();
   };
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <Link to="./products">Products</Link>
-      <Link to="./cart">My Cart</Link>
-      <Link to="./products/new">
-        <FaPen />
-      </Link>
-      {user ? (
+      {user && <Link to="./cart">My Cart</Link>}
+      {user && user.isAdmin && (
+        <Link to="./products/new">
+          <FaPen />
+        </Link>
+      )}
+      {user && (
         <span className={styles.user}>
-          <img src={user.photoURL} alt="" />
+          <img src={user.photoURL} alt="userPhoto" />
           {user.displayName}
         </span>
-      ) : (
-        <></>
       )}
       <button className={styles.login} onClick={handleLoginout}>
-        {login}
+        {loginout}
       </button>
-    </div>
+    </nav>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaShopify } from "react-icons/fa";
 import Navbar from "../Navbar/Navbar";
-import styles from "./SearchHeader.module.css";
+import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchHeader() {
