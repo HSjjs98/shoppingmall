@@ -6,7 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, set } from "firebase/database";
+import {v4 as uuid} from 'uuid';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCy2W3J0MehuPjYS3YGNNC4LJOFFJctMXA",
@@ -48,4 +49,15 @@ async function adminUser(user) {
       return user;
     })
     .catch(console.error);
+}
+
+export async function addNewProduct(product, image){
+  const id = uuid()
+  set(ref(database, `products/${id}}`), {
+    ...product,
+    id,
+    price: parseInt(product.price),
+    image: image,
+    options: product.options.split(','),
+  })
 }
