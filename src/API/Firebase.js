@@ -6,8 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get, set } from "firebase/database";
-import {v4 as uuid} from 'uuid';
+import { getDatabase, ref, get, set, onValue } from "firebase/database";
+import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCy2W3J0MehuPjYS3YGNNC4LJOFFJctMXA",
@@ -23,17 +23,16 @@ const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
 
 export async function login() {
-  signInWithPopup(auth, provider).catch(console.error)
+  signInWithPopup(auth, provider).catch(console.error);
 }
 
 export async function logout() {
-  signOut(auth).catch(console.error)
+  signOut(auth).catch(console.error);
 }
 
 export function onUserStateChange(callback) {
   onAuthStateChanged(auth, async (user) => {
     const updatedUser = user ? await adminUser(user) : null; //비동기 함수처리 한 후 콜백 함수 호출
-    console.log(updatedUser);
     callback(updatedUser);
   });
 }
@@ -51,13 +50,23 @@ async function adminUser(user) {
     .catch(console.error);
 }
 
-export async function addNewProduct(product, image){
-  const id = uuid()
+export async function addNewProduct(product, image) {
+  const id = uuid();
   set(ref(database, `products/${id}}`), {
     ...product,
     id,
     price: parseInt(product.price),
     image: image,
-    options: product.options.split(','),
-  })
+    options: product.options.split(","),
+  });
+}
+
+export async function getProducts() {
+  const productRef = ref(database, "products");
+  return get(productRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
+  });
 }
