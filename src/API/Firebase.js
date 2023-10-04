@@ -2,11 +2,11 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
-  GoogleAuthProvider,
+  GithubAuthProvider,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get, set, onValue } from "firebase/database";
+import { getDatabase, ref, get, set} from "firebase/database";
 import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
@@ -14,12 +14,12 @@ const firebaseConfig = {
   authDomain: "shoppy-45e82.firebaseapp.com",
   databaseURL:
     "https://shoppy-45e82-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "shoppy-45e82",
+  projectId: "shoppy-45e82",                                                                                  
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
+const provider = new GithubAuthProvider();
 const database = getDatabase(app);
 
 export async function login() {
@@ -38,7 +38,7 @@ export function onUserStateChange(callback) {
 }
 
 async function adminUser(user) {
-  return get(ref(database, "admin")) //
+  return get(ref(database, "admin"))
     .then((snapshot) => {
       if (snapshot.exists()) {
         const admins = snapshot.val();
