@@ -13,17 +13,15 @@
   color: black;
   opacity: 0.8;
 }
-.container *:hover{
+.container >:hover{
   opacity: 1;
-  transform: scale(1.1);
+  scale: 1.1;
 }
 
-.container span:hover,
-.container span img:hover{
+.user:hover{
   opacity: 0.8;
-  transform: scale(1);
+  scale: 1;
 }
-
 .user img{
   width: 1.7rem;
   border-radius: 50%;

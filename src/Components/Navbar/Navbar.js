@@ -3,6 +3,7 @@ import { FaPen } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 import { login as Login, logout as Logout } from "../../API/Firebase";
 import { useAuthContext } from "../../Context/AuthContext";
+import CartStatus from "../UI/CartStatus";
 
 export default function Navbar() {
   const { user, loginout } = useAuthContext();
@@ -13,7 +14,9 @@ export default function Navbar() {
   return (
     <nav className={styles.container}>
       <Link to="./products">Products</Link>
-      {user && <Link to="./cart">My Cart</Link>}
+      {user && <Link to="./cart">
+        <CartStatus/>
+      </Link>}
       {user && user.isAdmin && (
         <Link to="./products/new">
           <FaPen />

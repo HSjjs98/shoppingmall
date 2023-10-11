@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
+    textColor:{
+      white: "#FFF"
+    },
     extend: {
       colors: {
         brand: '#F96162',
