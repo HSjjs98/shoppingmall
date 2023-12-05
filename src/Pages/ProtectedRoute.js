@@ -1,6 +1,6 @@
 import { useAuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import NewProduct from "./NewProduct/NewProduct";
+import NewProduct from "./NewProduct";
 
 export default function ProtectedRoute({ children, requireAdmin }) {
   const { user } = useAuthContext();

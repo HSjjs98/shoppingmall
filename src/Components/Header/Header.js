@@ -9,7 +9,7 @@ export default function SearchHeader() {
   return (
     <div className={styles.container}>
       <button className={styles.logo} onClick={() => navigate("/")}>
-        <FaShopify />
+        <FaShopify className="display: inline" />
         Shoppy
       </button>
       <Navbar className={styles.navbar} />

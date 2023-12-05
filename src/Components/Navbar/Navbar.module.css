@@ -26,14 +26,3 @@
   width: 1.7rem;
   border-radius: 50%;
 }
-
-.login{
-  border: none;
-  height: 1.5rem;
-  background-color: #d05a5a;
-  color: white;
-  font-weight: 600;
-  font-size: 1.05rem;
-  border-radius: 10%;
-  cursor: pointer;
-}

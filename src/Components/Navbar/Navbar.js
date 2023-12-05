@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import { login as Login, logout as Logout } from "../../API/Firebase";
 import { useAuthContext } from "../../Context/AuthContext";
 import CartStatus from "../UI/CartStatus";
+import Button from "../UI/Button";
 
 export default function Navbar() {
   const { user, loginout } = useAuthContext();
@@ -14,12 +15,14 @@ export default function Navbar() {
   return (
     <nav className={styles.container}>
       <Link to="./products">Products</Link>
-      {user && <Link to="./cart">
-        <CartStatus/>
-      </Link>}
+      {user && (
+        <Link to="./cart">
+          <CartStatus />
+        </Link>
+      )}
       {user && user.isAdmin && (
         <Link to="./products/new">
-          <FaPen />
+          <FaPen className="text-2xl" />
         </Link>
       )}
       {user && (
@@ -28,9 +31,7 @@ export default function Navbar() {
           {user.displayName}
         </span>
       )}
-      <button className={styles.login} onClick={handleLoginout}>
-        {loginout}
-      </button>
+      <Button text={loginout} onClick={handleLoginout} />
     </nav>
   );
 }

@@ -9,7 +9,7 @@ export default function AllProducts() {
     isLoading,
     error,
     data: products,
-  } = useQuery(["products"], getProducts);
+  } = useQuery(["products"], getProducts, { staleTime: 1000 * 60 });
 
   return (
     <>

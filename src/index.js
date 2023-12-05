@@ -5,7 +5,7 @@ import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Error from "./Pages/Error";
 import Home from "./Pages/Home";
-import NewProduct from "./Pages/NewProduct/NewProduct";
+import NewProduct from "./Pages/NewProduct";
 import ProductDetail from "./Pages/ProductDetail";
 import MyCart from "./Pages/MyCart";
 import ProtectedRoute from "./Pages/ProtectedRoute";
